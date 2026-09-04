@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR — Painel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="/" class="brand">
+            <div class="brand-mark">CR</div>
+            <span class="brand-name">cartoon-themed restaurants</span>
+        </a>
+        <div class="topbar-right">Painel do Restaurante</div>
+    </div>
+</header>
+
+<div class="page">
+    <div class="page-header">
+        <h1>Restaurantes</h1>
+        <p>Gerencie os restaurantes e cardápios da plataforma</p>
+    </div>
+
+    <div class="grid">
+        <aside>
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Adicionar restaurante</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="field">
+                        <label for="nome">Nome *</label>
+                        <input type="text" id="nome" placeholder="Ex: Burger House" autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label for="categoria">Categoria</label>
+                        <select id="categoria">
+                            <option value="">Selecione...</option>
+                            <option value="Hambúrguer">Hambúrguer</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Japonês">Japonês</option>
+                            <option value="Brasileira">Brasileira</option>
+                            <option value="Italiana">Italiana</option>
+                            <option value="Árabe">Árabe</option>
+                            <option value="Sobremesas">Sobremesas</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" rows="3" placeholder="Breve descrição do restaurante"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" placeholder="Rua, número, bairro">
+                    </div>
+                    <div class="field">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" placeholder="(11) 99999-9999">
+                    </div>
+                    <button class="btn-primary" onclick="criarRestaurante()">Cadastrar restaurante</button>
+                </div>
+            </div>
+        </aside>
+
+        <section>
+            <div class="list-header">
+                <h2>Cadastrados</h2>
+                <span class="badge" id="contador">0</span>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="busca" placeholder="Buscar por nome ou categoria..." autocomplete="off">
+            </div>
+
+            <div id="lista">
+                <div class="state">
+                    <div class="state-title">Carregando...</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-detalhes">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-titulo">Detalhes</h3>
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-conteudo"></div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/static/script.js" defer></script>
+</body>
+</html>
