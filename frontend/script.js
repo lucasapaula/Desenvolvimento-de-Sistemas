@@ -1,10 +1,7 @@
 const API_URL = "http://127.0.0.1:8000";
 let restauranteAberto = null;
-<<<<<<< HEAD
 let termoBusca = "";
 let timeoutBusca = null;
-=======
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 
 function inicial(nome) {
     return nome ? nome.trim().charAt(0).toUpperCase() : "?";
@@ -21,7 +18,6 @@ function mostrarToast(mensagem, erro = false) {
     setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
-<<<<<<< HEAD
 function limparFormulario() {
     document.getElementById("nome").value = "";
     document.getElementById("categoria").value = "";
@@ -30,14 +26,11 @@ function limparFormulario() {
     document.getElementById("telefone").value = "";
 }
 
-=======
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 async function carregarRestaurantes() {
     const lista = document.getElementById("lista");
     const contador = document.getElementById("contador");
 
     try {
-<<<<<<< HEAD
         let url = `${API_URL}/restaurantes`;
         if (termoBusca) {
             url += `?nome=${encodeURIComponent(termoBusca)}`;
@@ -45,9 +38,6 @@ async function carregarRestaurantes() {
 
         const res = await fetch(url);
         if (!res.ok) throw new Error();
-=======
-        const res = await fetch(`${API_URL}/restaurantes`);
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
         const data = await res.json();
 
         contador.textContent = data.length || 0;
@@ -56,13 +46,8 @@ async function carregarRestaurantes() {
         if (!data || data.length === 0) {
             lista.innerHTML = `
                 <div class="state">
-<<<<<<< HEAD
                     <div class="state-title">${termoBusca ? "Nenhum restaurante encontrado" : "Nenhum restaurante cadastrado"}</div>
                     <div class="state-desc">${termoBusca ? "Tente outro termo de busca" : "Use o formulário ao lado para adicionar o primeiro"}</div>
-=======
-                    <div class="state-title">Nenhum restaurante cadastrado</div>
-                    <div class="state-desc">Use o formulário ao lado para adicionar o primeiro</div>
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
                 </div>
             `;
             return;
@@ -73,18 +58,14 @@ async function carregarRestaurantes() {
             card.className = "card";
             card.id = `rest-${r.id}`;
             const aberto = restauranteAberto === r.id;
-<<<<<<< HEAD
             const qtd = r.cardapio ? r.cardapio.length : 0;
             const categoria = r.categoria ? `<span class="tag">${r.categoria}</span>` : "";
-=======
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 
             card.innerHTML = `
                 <div class="card-main">
                     <div class="avatar">${inicial(r.nome)}</div>
                     <div class="card-body">
                         <h3>${r.nome}</h3>
-<<<<<<< HEAD
                         <div class="card-meta">
                             ${categoria}
                             <span>ID ${r.id} · ${qtd} itens</span>
@@ -94,13 +75,6 @@ async function carregarRestaurantes() {
                         <button class="btn btn-accent" onclick="toggleCardapio(${r.id})">Cardápio</button>
                         <button class="btn" onclick="verDetalhes(${r.id})">Detalhes</button>
                         <button class="btn" onclick="editarRestaurante(${r.id})">Editar</button>
-=======
-                        <span>ID ${r.id} · ${r.cardapio ? r.cardapio.length : 0} itens</span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-accent" onclick="toggleCardapio(${r.id})">Cardápio</button>
-                        <button class="btn" onclick="editarRestaurante(${r.id}, \`${String(r.nome).replace(/`/g, "\\`")}\`)">Editar</button>
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
                         <button class="btn btn-danger" onclick="deletarRestaurante(${r.id})">Excluir</button>
                     </div>
                 </div>
@@ -161,17 +135,6 @@ async function toggleCardapio(id) {
     }
     restauranteAberto = id;
     await carregarRestaurantes();
-<<<<<<< HEAD
-=======
-
-    try {
-        const res = await fetch(`${API_URL}/restaurantes/${id}/cardapio`);
-        const comidas = await res.json();
-        if (Array.isArray(comidas)) renderizarComidas(id, comidas);
-    } catch (e) {
-        console.error(e);
-    }
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 }
 
 async function adicionarComida(restauranteId) {
@@ -185,7 +148,6 @@ async function adicionarComida(restauranteId) {
         return;
     }
 
-<<<<<<< HEAD
     try {
         const res = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio`, {
             method: "POST",
@@ -206,23 +168,6 @@ async function adicionarComida(restauranteId) {
         mostrarToast("Comida adicionada");
     } catch (e) {
         mostrarToast("Erro de conexão", true);
-=======
-    const res = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio?nome=${encodeURIComponent(nome)}&preco=${preco}`, {
-        method: "POST"
-    });
-
-    if (res.ok) {
-        nomeInput.value = "";
-        precoInput.value = "";
-        const comidasRes = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio`);
-        const comidas = await comidasRes.json();
-        renderizarComidas(restauranteId, comidas);
-        carregarRestaurantes();
-        mostrarToast("Comida adicionada");
-    } else {
-        const erro = await res.json();
-        mostrarToast(erro.detail || "Erro ao adicionar", true);
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     }
 }
 
@@ -239,7 +184,6 @@ async function editarComida(restauranteId, comidaId, nomeAtual, precoAtual) {
         return;
     }
 
-<<<<<<< HEAD
     try {
         const res = await fetch(
             `${API_URL}/restaurantes/${restauranteId}/cardapio/${comidaId}`,
@@ -260,27 +204,12 @@ async function editarComida(restauranteId, comidaId, nomeAtual, precoAtual) {
         mostrarToast("Comida atualizada");
     } catch (e) {
         mostrarToast("Erro de conexão", true);
-=======
-    const res = await fetch(
-        `${API_URL}/restaurantes/${restauranteId}/cardapio/${comidaId}?nome=${encodeURIComponent(novoNome.trim())}&preco=${novoPreco}`,
-        { method: "PATCH" }
-    );
-
-    if (res.ok) {
-        const comidasRes = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio`);
-        const comidas = await comidasRes.json();
-        renderizarComidas(restauranteId, comidas);
-        mostrarToast("Comida atualizada");
-    } else {
-        mostrarToast("Erro ao editar", true);
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     }
 }
 
 async function deletarComida(restauranteId, comidaId) {
     if (!confirm("Excluir esta comida?")) return;
 
-<<<<<<< HEAD
     try {
         const res = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio/${comidaId}`, {
             method: "DELETE"
@@ -296,25 +225,10 @@ async function deletarComida(restauranteId, comidaId) {
         mostrarToast("Comida excluída");
     } catch (e) {
         mostrarToast("Erro de conexão", true);
-=======
-    const res = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio/${comidaId}`, {
-        method: "DELETE"
-    });
-
-    if (res.ok) {
-        const comidasRes = await fetch(`${API_URL}/restaurantes/${restauranteId}/cardapio`);
-        const comidas = await comidasRes.json();
-        renderizarComidas(restauranteId, comidas);
-        carregarRestaurantes();
-        mostrarToast("Comida excluída");
-    } else {
-        mostrarToast("Erro ao excluir", true);
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     }
 }
 
 async function criarRestaurante() {
-<<<<<<< HEAD
     const nome = document.getElementById("nome").value.trim();
     const categoria = document.getElementById("categoria").value.trim();
     const descricao = document.getElementById("descricao").value.trim();
@@ -403,49 +317,12 @@ async function editarRestaurante(id) {
         mostrarToast("Restaurante atualizado");
     } catch (e) {
         mostrarToast("Erro de conexão", true);
-=======
-    const input = document.getElementById("nome");
-    const nome = input.value.trim();
-    if (!nome) {
-        input.focus();
-        return;
-    }
-
-    const res = await fetch(`${API_URL}/restaurantes?nome=${encodeURIComponent(nome)}`, {
-        method: "POST"
-    });
-
-    if (res.ok) {
-        input.value = "";
-        carregarRestaurantes();
-        mostrarToast("Restaurante cadastrado");
-    } else {
-        const erro = await res.json();
-        mostrarToast(erro.detail || "Erro ao cadastrar", true);
-    }
-}
-
-async function editarRestaurante(id, nomeAtual) {
-    const novo = prompt("Novo nome do restaurante:", nomeAtual);
-    if (!novo || !novo.trim()) return;
-
-    const res = await fetch(`${API_URL}/restaurantes/${id}?nome=${encodeURIComponent(novo.trim())}`, {
-        method: "PATCH"
-    });
-
-    if (res.ok) {
-        carregarRestaurantes();
-        mostrarToast("Restaurante atualizado");
-    } else {
-        mostrarToast("Erro ao editar", true);
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     }
 }
 
 async function deletarRestaurante(id) {
     if (!confirm("Deseja excluir este restaurante?")) return;
 
-<<<<<<< HEAD
     try {
         const res = await fetch(`${API_URL}/restaurantes/${id}`, {
             method: "DELETE"
@@ -522,26 +399,10 @@ document.getElementById("modal-detalhes").addEventListener("click", e => {
     if (e.target.id === "modal-detalhes") fecharModal();
 });
 
-=======
-    const res = await fetch(`${API_URL}/restaurantes/${id}`, {
-        method: "DELETE"
-    });
-
-    if (res.ok) {
-        if (restauranteAberto === id) restauranteAberto = null;
-        carregarRestaurantes();
-        mostrarToast("Restaurante excluído");
-    } else {
-        mostrarToast("Erro ao excluir", true);
-    }
-}
-
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 document.getElementById("nome").addEventListener("keydown", e => {
     if (e.key === "Enter") criarRestaurante();
 });
 
-<<<<<<< HEAD
 document.getElementById("busca").addEventListener("input", e => {
     clearTimeout(timeoutBusca);
     timeoutBusca = setTimeout(() => {
@@ -552,6 +413,3 @@ document.getElementById("busca").addEventListener("input", e => {
 });
 
 carregarRestaurantes();
-=======
-carregarRestaurantes();
->>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
