@@ -132,7 +132,11 @@ body {
 
 .panel-body { padding: 20px; }
 
+<<<<<<< HEAD
 .field { margin-bottom: 14px; }
+=======
+.field { margin-bottom: 16px; }
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 
 .field label {
     display: block;
@@ -142,10 +146,16 @@ body {
     margin-bottom: 6px;
 }
 
+<<<<<<< HEAD
 .field input,
 .field select,
 .field textarea {
     width: 100%;
+=======
+.field input {
+    width: 100%;
+    height: 42px;
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     padding: 0 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
@@ -157,6 +167,7 @@ body {
     transition: border-color 0.15s, box-shadow 0.15s;
 }
 
+<<<<<<< HEAD
 .field input,
 .field select {
     height: 42px;
@@ -171,6 +182,9 @@ body {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
+=======
+.field input:focus {
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--primary-soft);
 }
@@ -187,7 +201,10 @@ body {
     font-family: inherit;
     cursor: pointer;
     transition: background 0.15s;
+<<<<<<< HEAD
     margin-top: 4px;
+=======
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 }
 
 .btn-primary:hover { background: var(--primary-2); }
@@ -216,6 +233,7 @@ body {
     border-radius: 20px;
 }
 
+<<<<<<< HEAD
 .search-box {
     margin-bottom: 14px;
 }
@@ -243,6 +261,8 @@ body {
     color: var(--text-3);
 }
 
+=======
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -290,6 +310,7 @@ body {
     text-overflow: ellipsis;
 }
 
+<<<<<<< HEAD
 .card-meta {
     display: flex;
     align-items: center;
@@ -310,14 +331,24 @@ body {
     color: var(--primary) !important;
     padding: 2px 7px;
     border-radius: 4px;
+=======
+.card-body span {
+    font-size: 0.78rem;
+    color: var(--text-3);
+    margin-top: 2px;
+    display: block;
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 }
 
 .card-actions {
     display: flex;
     gap: 6px;
     flex-shrink: 0;
+<<<<<<< HEAD
     flex-wrap: wrap;
     justify-content: flex-end;
+=======
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 }
 
 .btn {
@@ -461,6 +492,10 @@ body {
     color: var(--text-2);
 }
 
+<<<<<<< HEAD
+=======
+/* Toast */
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 .toast {
     position: fixed;
     bottom: 24px;
@@ -486,6 +521,7 @@ body {
 
 .toast.erro {
     background: var(--danger);
+<<<<<<< HEAD
 }
 
 .modal-overlay {
@@ -608,4 +644,6 @@ body {
     color: var(--text-3);
     text-align: center;
     padding: 12px;
+=======
+>>>>>>> 1af0b00fc2551e4e9fad2f309eacf031e0b0b2fd
 }
